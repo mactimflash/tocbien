@@ -16,7 +16,7 @@
 - Team đánh nghiêm túc nhưng không muốn phức tạp
 
 ---
-
+## 🔥 Link tải phần mềm: https://sdc.fdrive.vn/s/KgAmqasHTnsrARm
 ## ⚙️ Tính năng chính
 
 ### 🟡 TAB Combo Ping
