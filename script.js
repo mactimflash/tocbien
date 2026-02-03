@@ -1,6 +1,6 @@
 /* Basic landing page JS (no tracking, no 3rd-party libs) */
 
-const TELEGRAM_LINK = "https://t.me/your_username_here"; // TODO: change me
+const TELEGRAM_LINK = "https://t.me/th4nhlm"; // TODO: change me
 
 function bindTelegramLinks(){
   const ids = ["btnTelegramTop","btnTelegramHero","btnTelegramPricing","btnTelegramMobile","footerTelegram"];
