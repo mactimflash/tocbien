@@ -5,9 +5,11 @@
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.68);
   --line: rgba(255,255,255,.10);
-  --brand: #6EE7FF;
-  --brand2: #8B5CF6;
-  --gold: #F6D365;
+
+  --brandA: rgba(110,231,255,.16);   /* cyan glow */
+  --brandB: rgba(139,92,246,.16);    /* purple glow */
+  --gold:   rgba(246,211,101,.12);   /* gold glow */
+
   --shadow: 0 18px 50px rgba(0,0,0,.45);
   --radius: 18px;
 }
@@ -17,11 +19,8 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: "Be Vietnam Pro", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background:
-    radial-gradient(1200px 600px at 20% 10%, rgba(110,231,255,.18), transparent 55%),
-    radial-gradient(900px 550px at 80% 0%, rgba(139,92,246,.18), transparent 55%),
-    radial-gradient(900px 550px at 70% 70%, rgba(246,211,101,.10), transparent 60%),
-    var(--bg);
+  /* ✅ NỀN CHÍNH CHỈ TỐI – KHÔNG DÙNG RADIAL Ở BODY ĐỂ TRÁNH “LỆCH” */
+  background: var(--bg);
   color: var(--text);
   overflow-x:hidden;
 }
@@ -29,6 +28,9 @@ body{
 a{color:inherit; text-decoration:none}
 .wrap{max-width:1100px; margin:0 auto; padding:0 20px}
 
+/* =========================
+   TOPBAR
+========================= */
 .topbar{
   position:sticky; top:0; z-index:50;
   background: rgba(7,10,18,.72);
@@ -86,7 +88,52 @@ a{color:inherit; text-decoration:none}
 }
 .mobile-nav a{display:block; padding:10px 0; opacity:.9; font-weight:700}
 .mobile-nav a:hover{opacity:1}
+.mobile-nav.show{display:block}
 
+/* =========================
+   ✅ SECTION BACKGROUND ENGINE
+   Mỗi section tự có “glow” riêng -> không bị lệch khi scroll
+========================= */
+.hero, .section{
+  position:relative;
+  overflow:hidden;
+}
+
+/* layer nền cho section */
+.hero::before,
+.section::before{
+  content:"";
+  position:absolute;
+  inset:-140px 0;              /* phủ rộng để glow không bị cắt */
+  pointer-events:none;
+  z-index:0;
+  opacity:1;
+  background:
+    radial-gradient(900px 520px at 18% 18%, var(--brandA), transparent 60%),
+    radial-gradient(820px 520px at 82% 12%, var(--brandB), transparent 62%),
+    radial-gradient(920px 620px at 70% 80%, rgba(246,211,101,.08), transparent 62%);
+  transform: translateZ(0);     /* giảm jitter */
+}
+
+/* section-dark: nền khác một chút (đậm hơn) */
+.section-dark::before{
+  background:
+    radial-gradient(850px 520px at 20% 30%, rgba(255,255,255,.06), transparent 62%),
+    radial-gradient(820px 520px at 78% 20%, rgba(110,231,255,.12), transparent 62%),
+    radial-gradient(900px 620px at 60% 85%, rgba(139,92,246,.10), transparent 64%);
+  opacity:.95;
+}
+
+/* đảm bảo nội dung nằm trên lớp nền */
+.hero > .wrap,
+.section > .wrap{
+  position:relative;
+  z-index:1;
+}
+
+/* =========================
+   HERO
+========================= */
 .hero{padding:48px 0 24px}
 .hero-grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:22px; align-items:center}
 .pill{
@@ -130,16 +177,20 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
 .mini{font-size:12px; color:var(--muted); line-height:1.55}
 .center{text-align:center}
 
+/* =========================
+   SECTIONS / CARDS
+========================= */
 .section{padding:56px 0}
 .section-dark{
-  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%);
   border-top:1px solid rgba(255,255,255,.08);
   border-bottom:1px solid rgba(255,255,255,.08);
+  /* nền tối nhẹ để tách section */
+  background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%);
 }
+
 .section-title{margin-bottom:18px}
 .section-title.left{text-align:left}
 .section-title h2{margin:0 0 8px; font-size:30px}
-.section-title h3{margin:0 0 8px; font-size:26px}
 .section-title p{margin:0; color:var(--muted); line-height:1.6}
 
 .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:14px}
@@ -174,8 +225,16 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
   font-weight:900; font-size:12px;
 }
 
+/* GUIDE */
 .guide-grid{display:grid; grid-template-columns: 1fr 1fr; gap:16px; align-items:start}
-.step{display:flex; gap:12px; padding:14px; border-radius: var(--radius); border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); margin-bottom:10px}
+.step{
+  display:flex; gap:12px;
+  padding:14px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  margin-bottom:10px
+}
 .num{
   width:34px; height:34px; border-radius:12px;
   display:grid; place-items:center;
@@ -197,6 +256,7 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
   font-weight:700;
 }
 
+/* PRICING */
 .pricing-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:14px}
 .plan{
   border-radius: var(--radius);
@@ -217,11 +277,6 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
   border-color: rgba(246,211,101,.40);
   background: linear-gradient(135deg, rgba(246,211,101,.12), rgba(255,140,0,.08));
 }
-.plan .tag{
-  border-color: rgba(255,255,255,.14);
-}
-.plan.featured .tag{border-color: rgba(110,231,255,.40)}
-.plan.lifetime .tag{border-color: rgba(246,211,101,.50)}
 
 .cta-wide{
   margin-top:16px;
@@ -234,6 +289,7 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
 .cta-wide h3{margin:0 0 6px}
 .cta-wide p{margin:0; color:var(--muted); line-height:1.6}
 
+/* DONATE */
 .donate-grid{display:grid; grid-template-columns: 1fr .9fr; gap:16px; align-items:center}
 .donate-card{
   border-radius: var(--radius);
@@ -250,6 +306,7 @@ h1{font-size:44px; line-height:1.05; margin:0 0 12px}
   padding:12px;
 }
 
+/* FOOTER */
 .footer{
   padding:26px 0;
   border-top:1px solid rgba(255,255,255,.10);
@@ -266,16 +323,18 @@ code{
   font-weight:800;
 }
 
-/* Responsive */
+/* =========================
+   Responsive
+========================= */
 @media (max-width: 920px){
-  .hero-grid{grid-template-columns:1fr; }
+  .hero-grid{grid-template-columns:1fr;}
   h1{font-size:38px}
   .grid3{grid-template-columns:1fr}
   .pricing-grid{grid-template-columns:1fr}
   .guide-grid{grid-template-columns:1fr}
   .donate-grid{grid-template-columns:1fr}
+
   .nav{display:none}
   .burger{display:inline-block; margin-left:auto}
   #btnTelegramTop{display:none}
-  .mobile-nav.show{display:block}
 }
