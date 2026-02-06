@@ -88,7 +88,7 @@
 Nếu bạn thấy tool hữu ích, có thể donate để ủng hộ chi phí duy trì & phát triển thêm tính năng.
 
 ### 📱 QR Code Donate
-> (Bạn thay ảnh QR thật tại đây)
+
 
 ![Donate QR Code](donate_qr.png)
 
