@@ -3,8 +3,8 @@
 const TELEGRAM_LINK = "https://t.me/th4nhlm"; // TODO: change me
 
 function bindTelegramLinks(){
-  const ids = ["btnTelegramTop","btnTelegramHero","btnTelegramPricing","btnTelegramMobile","footerTelegram"];
-  ids.forEach(id=>{
+  const ids = ["btnTelegramHero","btnTelegramPricing","btnTelegramMobile","footerTelegram"];
+  ids.forEach(id => document.getElementById(id).href = TELEGRAM_LINK);
     const el = document.getElementById(id);
     if (el) el.href = TELEGRAM_LINK;
   });
