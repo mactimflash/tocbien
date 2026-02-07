@@ -1,4 +1,5 @@
-const TELEGRAM_LINK = "https://t.me/th4nhlm"; // TODO: change me
+// script.js
+const TELEGRAM_LINK = "https://t.me/th4nhlm";
 
 function bindTelegramLinks() {
   const ids = ["btnTelegramHero", "btnTelegramPricing", "btnTelegramMobile", "footerTelegram"];
@@ -13,23 +14,20 @@ function smoothAnchors() {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
       if (!href || href === "#") return;
-
       const target = document.querySelector(href);
       if (!target) return;
-
       e.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
 
-      // close mobile menu if exists
+      const mobileNav = document.getElementById("mobileNav");
       if (mobileNav) mobileNav.classList.remove("show");
     });
   });
 }
 
-const burger = document.getElementById("burger");
-const mobileNav = document.getElementById("mobileNav");
-
 function bindMobileMenu() {
+  const burger = document.getElementById("burger");
+  const mobileNav = document.getElementById("mobileNav");
   if (!burger || !mobileNav) return;
 
   burger.addEventListener("click", () => {
@@ -50,7 +48,6 @@ function setYear() {
 
 function trackPageView() {
   const ENDPOINT = "https://tocbien.starlinksatellitewifi.workers.dev/track";
-
   const payload = {
     type: "page_view",
     path: location.pathname + location.search + location.hash,
@@ -59,20 +56,24 @@ function trackPageView() {
     ts: new Date().toISOString(),
   };
 
-  try {
-    fetch(ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      keepalive: true,
-    }).catch(() => {});
-  } catch (_) {}
+  // log để bạn nhìn thấy ngay trong Console
+  console.log("[track] sending", payload);
+
+  fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+    keepalive: true, // giúp gửi cả khi user đóng tab nhanh
+  })
+    .then((r) => r.text())
+    .then((t) => console.log("[track] ok:", t))
+    .catch((e) => console.error("[track] failed:", e));
 }
 
-bindTelegramLinks();
-bindMobileMenu();
-smoothAnchors();
-setYear();
-
-if (document.readyState === "complete") trackPageView();
-else window.addEventListener("load", trackPageView, { once: true });
+document.addEventListener("DOMContentLoaded", () => {
+  bindTelegramLinks();
+  bindMobileMenu();
+  smoothAnchors();
+  setYear();
+  trackPageView();
+});
