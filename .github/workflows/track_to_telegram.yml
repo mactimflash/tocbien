@@ -1,8 +1,52 @@
-- name: Send Telegram
-  run: |
-    curl -X POST "https://api.telegram.org/bot${{ secrets.TELE_TOKEN }}/sendMessage" \
-      -d chat_id=${{ secrets.TELE_CHAT_ID }} \
-      -d text="🔥 New Visitor:
-Path: ${{ github.event.client_payload.path }}
-Ref: ${{ github.event.client_payload.ref }}
-UA: ${{ github.event.client_payload.ua }}"
+name: Track Page View -> Telegram
+
+on:
+  repository_dispatch:
+    types: [page_view]
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate secrets
+        run: |
+          if [ -z "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then echo "Missing TELEGRAM_BOT_TOKEN secret"; exit 1; fi
+          if [ -z "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then echo "Missing TELEGRAM_CHAT_ID secret"; exit 1; fi
+
+      - name: Send to Telegram
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: |
+          echo "Payload: $PAYLOAD"
+
+          # ubuntu-latest có jq sẵn, nhưng vẫn check cho chắc
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+          PATH_=$(echo "$PAYLOAD" | jq -r '.path // ""')
+          REF_=$(echo "$PAYLOAD" | jq -r '.ref // ""')
+          LANG_=$(echo "$PAYLOAD" | jq -r '.lang // ""')
+          TZ_=$(echo "$PAYLOAD" | jq -r '.tz // ""')
+          UA_=$(echo "$PAYLOAD" | jq -r '.ua // ""')
+          COUNTRY_=$(echo "$PAYLOAD" | jq -r '.country // ""')
+          CITY_=$(echo "$PAYLOAD" | jq -r '.city // ""')
+          TS_=$(echo "$PAYLOAD" | jq -r '.ts // ""')
+
+          MSG="👀 GitHub Pages view
+Path: ${PATH_}
+Ref: ${REF_}
+Lang: ${LANG_}
+TZ: ${TZ_}
+Geo: ${CITY_} ${COUNTRY_}
+UA: ${UA_}
+Time: ${TS_}"
+
+          curl -sS -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg chat_id "$CHAT_ID" --arg text "$MSG" '{chat_id:$chat_id, text:$text}')"
