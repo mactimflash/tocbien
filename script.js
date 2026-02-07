@@ -50,3 +50,21 @@ bindTelegramLinks();
 bindMobileMenu();
 smoothAnchors();
 setYear();
+(function trackPageView() {
+  const ENDPOINT = "https://tocbien.starlinksatellitewifi.workers.dev/track";
+
+  const payload = {
+    type: "page_view",
+    path: location.pathname + location.search + location.hash,
+    ref: document.referrer || "",
+    ua: navigator.userAgent || "",
+    ts: new Date().toISOString(),
+  };
+
+  fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch(() => {});
+})();
+
