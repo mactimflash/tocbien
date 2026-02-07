@@ -10,42 +10,41 @@ permissions:
 jobs:
   notify:
     runs-on: ubuntu-latest
-    steps:
-      - name: Validate secrets
-        run: |
-          if [ -z "${{ secrets.TELEGRAM_BOT_TOKEN }}" ]; then echo "Missing TELEGRAM_BOT_TOKEN secret"; exit 1; fi
-          if [ -z "${{ secrets.TELEGRAM_CHAT_ID }}" ]; then echo "Missing TELEGRAM_CHAT_ID secret"; exit 1; fi
 
-      - name: Send to Telegram
+    steps:
+      - name: Check payload
+        run: |
+          echo "Event: $GITHUB_EVENT_NAME"
+          echo "Payload:"
+          cat "$GITHUB_EVENT_PATH"
+
+      - name: Send Telegram
+        if: github.event_name == 'repository_dispatch'
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PAYLOAD: ${{ toJson(github.event.client_payload) }}
         run: |
-          echo "Payload: $PAYLOAD"
 
-          # ubuntu-latest có jq sẵn, nhưng vẫn check cho chắc
-          if ! command -v jq >/dev/null 2>&1; then
-            sudo apt-get update && sudo apt-get install -y jq
+          if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            echo "Missing Telegram secrets"
+            exit 1
           fi
 
-          PATH_=$(echo "$PAYLOAD" | jq -r '.path // ""')
-          REF_=$(echo "$PAYLOAD" | jq -r '.ref // ""')
-          LANG_=$(echo "$PAYLOAD" | jq -r '.lang // ""')
-          TZ_=$(echo "$PAYLOAD" | jq -r '.tz // ""')
-          UA_=$(echo "$PAYLOAD" | jq -r '.ua // ""')
-          COUNTRY_=$(echo "$PAYLOAD" | jq -r '.country // ""')
-          CITY_=$(echo "$PAYLOAD" | jq -r '.city // ""')
-          TS_=$(echo "$PAYLOAD" | jq -r '.ts // ""')
+          PAYLOAD=$(cat "$GITHUB_EVENT_PATH")
 
-          MSG="👀 GitHub Pages view
-Path: ${PATH_}
-Ref: ${REF_}
-Lang: ${LANG_}
-TZ: ${TZ_}
-Geo: ${CITY_} ${COUNTRY_}
-UA: ${UA_}
-Time: ${TS_}"
+          PATH_=$(echo "$PAYLOAD" | jq -r '.client_payload.path // "unknown"')
+          REF_=$(echo "$PAYLOAD" | jq -r '.client_payload.ref // ""')
+          UA_=$(echo "$PAYLOAD" | jq -r '.client_payload.ua // ""')
+          TS_=$(echo "$PAYLOAD" | jq -r '.client_payload.ts // ""')
+          COUNTRY_=$(echo "$PAYLOAD" | jq -r '.client_payload.country // ""')
+          CITY_=$(echo "$PAYLOAD" | jq -r '.client_payload.city // ""')
+
+          MSG="👀 Visitor GitHub Pages
+Path: $PATH_
+Ref: $REF_
+Geo: $CITY_ $COUNTRY_
+UA: $UA_
+Time: $TS_"
 
           curl -sS -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
             -H "Content-Type: application/json" \
