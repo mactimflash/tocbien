@@ -2,18 +2,34 @@ name: Track Page View
 
 on:
   repository_dispatch:
-    types: [page_view]
+    types:
+      - page_view
 
 jobs:
   notify:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Send Telegram
+      - name: Debug secrets presence (safe)
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          curl -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
-          -H "Content-Type: application/json" \
-          -d "{\"chat_id\":\"${CHAT_ID}\",\"text\":\"Visitor accessed landing page\"}"
+          echo "BOT_TOKEN length: ${#BOT_TOKEN}"
+          echo "CHAT_ID: ${CHAT_ID}"
+          if [ -z "$BOT_TOKEN" ]; then echo "❌ Missing TELEGRAM_BOT_TOKEN secret"; exit 1; fi
+          if [ -z "$CHAT_ID" ]; then echo "❌ Missing TELEGRAM_CHAT_ID secret"; exit 1; fi
+
+      - name: Send Telegram message
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set -e
+          payload=$(printf '{"chat_id":"%s","text":"✅ Landing page accessed (%s)"}' "$CHAT_ID" "$(date -u +%FT%TZ)")
+          echo "Payload: $payload"
+          curl -sS -X POST "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage" \
+            -H "Content-Type: application/json" \
+            --data "$payload" \
+            -o resp.json
+          echo "Telegram response:"
+          cat resp.json
