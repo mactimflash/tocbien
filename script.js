@@ -1,26 +1,27 @@
-/* Basic landing page JS (no tracking, no 3rd-party libs) */
-
 const TELEGRAM_LINK = "https://t.me/th4nhlm"; // TODO: change me
 
-function bindTelegramLinks(){
-  const ids = ["btnTelegramHero","btnTelegramPricing","btnTelegramMobile","footerTelegram"];
-  ids.forEach(id => document.getElementById(id).href = TELEGRAM_LINK);
+function bindTelegramLinks() {
+  const ids = ["btnTelegramHero", "btnTelegramPricing", "btnTelegramMobile", "footerTelegram"];
+  ids.forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.href = TELEGRAM_LINK;
   });
 }
 
-function smoothAnchors(){
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener("click", (e)=>{
+function smoothAnchors() {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
       if (!href || href === "#") return;
+
       const target = document.querySelector(href);
       if (!target) return;
+
       e.preventDefault();
-      target.scrollIntoView({behavior:"smooth", block:"start"});
-      // close mobile menu
-      mobileNav.classList.remove("show");
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // close mobile menu if exists
+      if (mobileNav) mobileNav.classList.remove("show");
     });
   });
 }
@@ -28,29 +29,26 @@ function smoothAnchors(){
 const burger = document.getElementById("burger");
 const mobileNav = document.getElementById("mobileNav");
 
-function bindMobileMenu(){
+function bindMobileMenu() {
   if (!burger || !mobileNav) return;
-  burger.addEventListener("click", ()=>{
+
+  burger.addEventListener("click", () => {
     mobileNav.classList.toggle("show");
   });
-  // close on outside click
-  document.addEventListener("click", (e)=>{
+
+  document.addEventListener("click", (e) => {
     if (!mobileNav.classList.contains("show")) return;
     const inside = mobileNav.contains(e.target) || burger.contains(e.target);
     if (!inside) mobileNav.classList.remove("show");
   });
 }
 
-function setYear(){
+function setYear() {
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 }
 
-bindTelegramLinks();
-bindMobileMenu();
-smoothAnchors();
-setYear();
-(function trackPageView() {
+function trackPageView() {
   const ENDPOINT = "https://tocbien.starlinksatellitewifi.workers.dev/track";
 
   const payload = {
@@ -61,10 +59,20 @@ setYear();
     ts: new Date().toISOString(),
   };
 
-  fetch(ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  }).catch(() => {});
-})();
+  try {
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  } catch (_) {}
+}
 
+bindTelegramLinks();
+bindMobileMenu();
+smoothAnchors();
+setYear();
+
+if (document.readyState === "complete") trackPageView();
+else window.addEventListener("load", trackPageView, { once: true });
