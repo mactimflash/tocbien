@@ -16,7 +16,7 @@
 - Team đánh nghiêm túc nhưng không muốn phức tạp
 
 ---
-## 🔥 Link tải phần mềm: https://sdc.fdrive.vn/s/KgAmqasHTnsrARm
+## 🔥 Link tải phần mềm: https://github.com/mactimflash/tocbien/releases/tag/tocbien
 ## ⚙️ Tính năng chính
 
 ### 🟡 TAB Combo Ping
