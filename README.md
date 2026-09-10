@@ -1,105 +1,95 @@
-# 🔥 LOL Helper Tool – Flash Tracker & TAB Combo Ping
+# LOL Macro Helper Tool v2.7 Native — website
 
-> Công cụ hỗ trợ Liên Minh Huyền Thoại dành cho người chơi **muốn call chuẩn – đánh nhanh – thao tác gọn**, không màu mè, không rủi ro.
+Source tĩnh cho website giới thiệu **LOL Macro Helper Tool v2.7 Native** tại
+<https://lmht.pages.dev>.
 
----
+Giao diện được thiết kế theo tinh thần của một tiện ích Windows cổ điển: nội
+dung ngắn, tải về rõ ràng, ít hiệu ứng và không sử dụng branding, logo hay mã
+nguồn của UniKey.
 
-## 🚀 LOL Helper Tool là gì?
-**LOL Helper Tool** là một công cụ chạy nền trên Windows, hỗ trợ người chơi:
-- Theo dõi **thời gian hồi Flash chính xác**
-- **Ping / combo nhanh** bằng phím TAB & SPACE
-- **Gợi ý đánh nhau – đẩy trụ** theo tình huống thực tế trong game
+## Nội dung chính
 
-👉 Phù hợp cho:
-- Rank đơn / duo
-- Shotcaller
-- Team đánh nghiêm túc nhưng không muốn phức tạp
+- Giới thiệu ứng dụng native C++ dành cho Windows 10/11 x64.
+- Minh họa giao diện Compact bằng HTML/CSS, không sử dụng artwork game.
+- Hướng dẫn học, xóa và phát lại điểm ping.
+- Bảng phím tắt cố định của v2.7 Native.
+- Mô tả Flash Tracker, trạng thái League Client, system tray và Auto Accept
+  thử nghiệm.
+- Khu vực tải miễn phí trỏ tới GitHub Releases.
+- Cảnh báo rõ đây là release candidate chưa ký số và cần policy review.
+- Khu vực MoMo Donate giữ nguyên tài nguyên `donate_qr.png`.
 
----
-## 🔥 Link tải phần mềm: https://github.com/mactimflash/tocbien/releases/tag/tocbien
-## ⚙️ Tính năng chính
+Website không còn:
 
-### 🟡 TAB Combo Ping
-- Learn vị trí click **1 lần**
-- Giữ **Tab hoặc Space** → combo ping nhanh
-- Không spam – không miss – thao tác cực gọn
+- giá thuê theo giờ hoặc theo ngày;
+- gói mua vĩnh viễn;
+- license khóa theo Machine ID;
+- CTA thuê/mua qua Telegram;
+- page-view tracking gửi IP, User-Agent hoặc referrer ra Telegram.
 
-### 🔵 Flash Tracker (chuẩn Live Client)
-- Alt + F5..F9 → ghi nhận Flash từng lane (TOP / JG / MID / AD / SP)
-- Tự tính thời gian hồi Flash
-- Gõ chat tự động
-- **Beep cảnh báo khi Flash hồi**
+## Chạy thử tại máy
 
-### 🧠 Gợi ý giao tranh thông minh
-- Nhấn **F5 / F6**
-- Tool phân tích:
-  - Lane nào mất Flash
-  - Có nên đánh hay nên né
-  - Đẩy trụ hay giữ lính
+Không có bước build và không cần cài dependency:
 
-### 🔄 Tự động reset theo game
-- Phát hiện **game mới / game kết thúc**
-- Không cần restart tool
+```bash
+python -m http.server 8080
+```
 
----
+Sau đó mở <http://localhost:8080>.
 
-## 🔐 An toàn & nhẹ
-- ❌ Không can thiệp file game
-- ❌ Không hook client
-- ❌ Không đọc bộ nhớ game
-- ✅ Chỉ dùng **Live Client API (official của Riot)** + phím
+## Triển khai
 
-➡️ Chạy nền, nhẹ, không ảnh hưởng FPS.
+Có thể deploy trực tiếp thư mục gốc lên Cloudflare Pages hoặc GitHub Pages:
 
----
+- Build command: để trống
+- Output directory: `/`
+- Production domain: `https://lmht.pages.dev`
 
-## 🧾 Quản lý License chuyên nghiệp
-- License **gắn theo máy** (Machine ID)
-- Không copy được
-- Hết hạn → **tự khoá**
-- Gia hạn / thu hồi **từ xa qua Telegram**
-- ❌ Không cần hub
-- ❌ Không cần đăng nhập tài khoản phụ
+Nút tải phần mềm đang trỏ tới:
 
----
+<https://github.com/mactimflash/tocbien/releases>
 
-## 💰 Giá thuê
-- 💸 **1.000 VND / 1 giờ**
-- 💸 **10.000 VND / 1 ngày (24h)**
+## Cấu trúc
 
-👉 Thuê linh hoạt:
-- Thuê theo buổi chơi
-- Thuê test
-- Không ràng buộc dài hạn
+```text
+index.html       Nội dung và cấu trúc trang
+styles.css       Giao diện desktop/mobile và High Contrast
+script.js        Menu mobile và năm bản quyền
+favicon.ico      Favicon hiện có
+donate_qr.png    QR MoMo Donate hiện có
+robots.txt       Chỉ dẫn crawler
+sitemap.xml      URL canonical của website
+CHANGELOG.md     Lịch sử thay đổi website
+PUBLISH_CHECKLIST.md  Checklist cập nhật release và metadata GitHub
+SITE_QA_REPORT.md     Kết quả kiểm tra và giới hạn visual QA
+SOURCE_MANIFEST.sha256  SHA-256 của toàn bộ file bàn giao
+```
 
----
+## Bảo toàn QR MoMo
 
-## 📩 Cách thuê & liên hệ
-- Liên hệ trực tiếp qua **Telegram**
-- Gửi:
-  - Thời gian muốn thuê (giờ / ngày)
-  - Máy đang sử dụng
+Đường dẫn trong HTML tiếp tục là:
 
-➡️ Cấp quyền trong **1 phút**, dùng ngay.
+```html
+<img src="donate_qr.png" alt="Mã QR MoMo Donate" class="donate-qr">
+```
 
----
+SHA-256 của file QR tại thời điểm cập nhật:
 
-## ❤️ Donate ủng hộ tác giả (tuỳ tâm)
-Nếu bạn thấy tool hữu ích, có thể donate để ủng hộ chi phí duy trì & phát triển thêm tính năng.
+```text
+3fe6f997f80d039b9b6640f2fe2948456679f0c04e398c79fb3421d6f0b99b6e
+```
 
-### 📱 QR Code Donate
+## Quyền riêng tư
 
+Website không gửi analytics hoặc telemetry tùy chỉnh. `script.js` chỉ điều
+khiển menu responsive và hiển thị năm hiện tại.
 
-![Donate QR Code](donate_qr.png)
+## Trạng thái phát hành
 
----
+Ứng dụng đang được giới thiệu dưới dạng **unsigned release candidate**. Trước
+khi phát hành công khai rộng rãi cần hoàn thành Windows QA, ký Authenticode và
+đánh giá lại Flash tracking, replay input, Auto Accept, tên sản phẩm và legal
+notice theo chính sách Riot hiện hành.
 
-## ⚠️ Lưu ý
-- Tool hỗ trợ **tối ưu thao tác & thông tin**
-- Không phải cheat / hack
-- Không đảm bảo thắng 100% – thắng hay thua vẫn phụ thuộc kỹ năng người chơi 😄
-
----
-
-🔥 **Chơi gọn – call chuẩn – đánh thông minh hơn**  
-Cảm ơn bạn đã sử dụng **LOL Helper Tool**!
+LOL Macro Helper Tool là dự án độc lập, không được Riot Games tài trợ, chứng
+thực hoặc vận hành. Các nhãn hiệu liên quan thuộc chủ sở hữu tương ứng.

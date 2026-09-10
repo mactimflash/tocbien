@@ -1,334 +1,297 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LOL Macro Helper Tool – Flash Tracker & TAB Combo Ping</title>
-  <meta name="description" content="LOL Macro Helper Tool: Flash Tracker, TAB Combo Ping, gợi ý giao tranh thông minh. Chạy nền, nhẹ, ổn định, chỉ dùng Live Client API." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f3f3">
+  <meta name="color-scheme" content="light">
+
+  <title>LOL Macro Helper Tool v2.7 Native – tiện ích Windows miễn phí</title>
+  <meta name="description" content="LOL Macro Helper Tool v2.7 Native là tiện ích Windows miễn phí, gọn nhẹ, hỗ trợ học điểm ping, theo dõi Tốc Biến, chạy ở khay hệ thống và kết nối League Client cục bộ.">
+  <link rel="canonical" href="https://lmht.pages.dev/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:title" content="LOL Macro Helper Tool v2.7 Native">
+  <meta property="og:description" content="Tiện ích Windows miễn phí, native C++, gọn nhẹ và chạy chủ yếu ở khay hệ thống.">
+  <meta property="og:url" content="https://lmht.pages.dev/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LOL Macro Helper Tool",
+    "softwareVersion": "2.7 Native",
+    "operatingSystem": "Windows 10, Windows 11",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://lmht.pages.dev/",
+    "downloadUrl": "https://github.com/mactimflash/tocbien/releases",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "VND"
+    }
+  }
+  </script>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top">
-        <span class="brand-mark">⚡</span>
-        <span class="brand-text">LOL Macro Helper Tool</span>
+  <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#top" aria-label="LOL Macro Helper Tool – trang chủ">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>
+          <strong>LOL Macro Helper Tool</strong>
+          <small>v2.7 Native</small>
+        </span>
       </a>
 
-      <nav class="nav">
+      <nav class="desktop-nav" aria-label="Điều hướng chính">
+        <a href="#download">Tải về</a>
         <a href="#features">Tính năng</a>
         <a href="#guide">Hướng dẫn</a>
-        <a href="#safety">An toàn</a>
-        <a href="#pricing">Giá</a>
+        <a href="#hotkeys">Phím tắt</a>
         <a href="#donate">Donate</a>
       </nav>
 
-      <a class="btn small primary" id="btnTelegramTop"    href="https://github.com/mactimflash/tocbien/releases/tag/tocbien"    target="_blank" rel="noopener">TẢI VỀ CHO WINDOWS</a>
+      <a class="button button-primary header-download" href="https://github.com/mactimflash/tocbien/releases" target="_blank" rel="noopener noreferrer">Tải cho Windows</a>
 
-      <button class="burger" id="burger" aria-label="Menu">
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Mở menu">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Điều hướng trên điện thoại" hidden>
+      <a href="#download">Tải về</a>
       <a href="#features">Tính năng</a>
       <a href="#guide">Hướng dẫn</a>
-      <a href="#safety">An toàn</a>
-      <a href="#pricing">Giá</a>
+      <a href="#hotkeys">Phím tắt</a>
       <a href="#donate">Donate</a>
-      <a class="btn primary" id="btnTelegramMobile" href="#" target="_blank" rel="noopener">Liên hệ Telegram</a>
-    </div>
+    </nav>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="pill">🔥 Flash Tracker & TAB Combo Ping</div>
-          <h1>Tối ưu giao tranh – call chuẩn – thao tác gọn</h1>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">BẢN THỬ NGHIỆM · WINDOWS 10/11 X64</p>
+          <h1>Một tiện ích nhỏ gọn để ghi nhớ Tốc Biến.</h1>
           <p class="lead">
-            Công cụ hỗ trợ Liên Minh Huyền Thoại dành cho người chơi muốn <b>đánh nhanh – call chuẩn – phối hợp team tốt hơn</b>.
-            Không màu mè, tập trung đúng thứ bạn cần trong trận.
+            Chạy nền ở khay hệ thống, mở nhanh khi cần và giữ các thao tác quan trọng trong một cửa sổ Windows quen thuộc. Không tài khoản, không gói thuê và không yêu cầu quyền Administrator mặc định.
           </p>
 
-          <div class="cta-row">
-            <a class="btn primary" id="btnTelegramHero" href="https://t.me/th4nhlm" target="_blank" rel="noopener">Thuê / Mua ngay</a>
-            <a class="btn ghost" href="#guide">Xem hướng dẫn</a>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/mactimflash/tocbien/releases" target="_blank" rel="noopener noreferrer">Tải miễn phí</a>
+            <a class="button" href="#guide">Xem cách sử dụng</a>
           </div>
 
-          <div class="badges">
-            <div class="badge">✅ Chạy nền, nhẹ</div>
-            <div class="badge">✅ Auto reset theo game</div>
-            <div class="badge">✅ Gợi ý giao tranh</div>
-          </div>
+          <ul class="quick-facts" aria-label="Thông tin nhanh">
+            <li>Native C++</li>
+            <li>Tray-first</li>
+            <li>Phím tắt cố định</li>
+            <li>Local-first</li>
+          </ul>
         </div>
 
-        <div class="hero-card">
-          <div class="hero-card-head">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <span>Preview</span>
+        <div class="app-preview" aria-label="Minh họa giao diện thu gọn của LOL Macro Helper Tool">
+          <div class="window-titlebar">
+            <span class="window-app-icon" aria-hidden="true">M</span>
+            <strong>LOL Macro Helper Tool v2.7</strong>
+            <span class="window-controls" aria-hidden="true">—　□　×</span>
           </div>
-          <div class="hero-card-body">
-            <img src="screenshot.png" alt="Infographic hướng dẫn LOL " class="img" />
-            <p class="mini">
-              Không chỉnh sửa file game, không inject, không hook client, không tác động tiến trình.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+          <div class="window-body compact-layout">
+            <div class="control-label">Trạng thái:</div>
+            <div class="status-value"><span class="status-dot warning"></span>Chưa kết nối</div>
+            <span class="native-button" aria-hidden="true">Thu nhỏ</span>
 
-    <!-- FEATURES -->
-    <section id="features" class="section">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>⚙️ Tính năng chính</h2>
-          <p>Gọn, nhanh, đúng nhu cầu: tracking Flash – ping combo – gợi ý đánh nhau.</p>
-        </div>
+            <div class="control-label">Chế độ:</div>
+            <div class="native-select">Theo dõi Tốc Biến <span>⌄</span></div>
+            <span class="native-button" aria-hidden="true">Kết thúc</span>
 
-        <div class="grid3">
-          <div class="card">
-            <div class="icon">🟡</div>
-            <h3>TAB Combo Ping</h3>
-            <ul>
-              <li>Learn vị trí click <b>1 lần</b></li>
-              <li>Giữ <b>Tab hoặc Space</b> để ping combo nhanh</li>
-              <li>Không spam – thao tác gọn – đỡ miss call</li>
-            </ul>
-          </div>
+            <div class="control-label">Học vị trí:</div>
+            <kbd>Shift + S</kbd>
+            <span class="native-button accent" aria-hidden="true">Mở rộng &gt;&gt;</span>
 
-          <div class="card">
-            <div class="icon">🔵</div>
-            <h3>Flash Tracker</h3>
-            <ul>
-              <li>Ghi nhận Flash theo lane (TOP/JG/MID/AD/SP)</li>
-              <li>Tự tính thời gian hồi Flash</li>
-              <li>Tự gõ chat & <b>beep cảnh báo</b> khi Flash hồi</li>
-            </ul>
+            <div class="control-label">Xóa vị trí:</div>
+            <kbd>Shift + C</kbd>
+            <span></span>
           </div>
-
-          <div class="card">
-            <div class="icon">🧠</div>
-            <h3>Gợi ý giao tranh</h3>
-            <ul>
-              <li>Gợi ý đánh/né theo tình huống thực tế</li>
-              <li>Ưu tiên các lane mất Flash để tạo lợi thế</li>
-              <li>Hỗ trợ shotcaller call nhanh, team đánh chắc</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="callout">
-          <div class="callout-left">
-            <h3>🔄 Auto reset theo game</h3>
-            <p>
-              Tool tự phát hiện <b>game mới / game kết thúc</b> và tự reset state.
-              Bạn không cần restart tool mỗi trận.
-            </p>
-          </div>
-          <div class="callout-right">
-            <span class="tag">Ổn định</span>
-            <span class="tag">Tối ưu thao tác</span>
-            <span class="tag">Chạy nền</span>
-          </div>
+          <div class="window-footer">LOL Macro Helper Tool – v2.7 Native</div>
         </div>
       </div>
     </section>
 
-    <!-- GUIDE -->
-    <section id="guide" class="section section-dark">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>🎮 Hướng dẫn nhanh</h2>
-          <p>Đọc 30 giây là dùng được – ưu tiên thao tác thực chiến.</p>
+    <section class="section" id="download">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="section-kicker">TẢI VỀ</p>
+          <h2>Miễn phí cho Windows x64</h2>
+          <p>Tải EXE hoặc bộ cài từ trang GitHub Releases của dự án. Không thuê theo giờ, không thuê theo ngày và không khóa theo Machine ID.</p>
         </div>
 
-        <div class="guide-grid">
-          <div class="guide-steps">
-            <div class="step">
-              <div class="num">1</div>
-              <div>
-                <h3>Chạy tool nền</h3>
-                <p>Mở tool trước khi vào trận. Tool chạy nền, không ảnh hưởng FPS.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="num">2</div>
-              <div>
-                <h3>Ghi nhận Flash</h3>
-                <p>Dùng tổ hợp phím để ghi Flash theo lane (TOP/JG/MID/AD/SP). Tool tự tính hồi & báo âm thanh.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="num">3</div>
-              <div>
-                <h3>Combo ping TAB/SPACE</h3>
-                <p>Learn 1 lần điểm ping. Giữ Tab hoặc Space để ping nhanh, gọn, chuẩn nhịp.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="num">4</div>
-              <div>
-                <h3>Call giao tranh thông minh</h3>
-                <p>Dựa trên Flash còn/đang hồi để quyết định đánh/né/đẩy trụ đúng timing.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="guide-img">
-            <img src="screenshot-02.png" alt="Hình minh hoạ hướng dẫn chơi LOL Macro Helper Tool" class="img shadow" />
-            <p class="mini">Tip: tool chỉ chạy nền và hỗ trợ thao tác/phân tích ngoài game.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAFETY -->
-    <section id="safety" class="section">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>🛡️ An toàn & không lo bị ban</h2>
-          <p>Thiết kế theo hướng tuân thủ – minh bạch – giống các tool phổ biến.</p>
-        </div>
-
-        <div class="grid3">
-          <div class="card">
-            <div class="icon">❌</div>
-            <h3>Không can thiệp vào game</h3>
-            <p>
-              Không chỉnh sửa file game, không inject, không hook client, không tác động tiến trình.
-              Tool chỉ chạy nền và hỗ trợ thao tác/phân tích ngoài game.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="icon">❌</div>
-            <h3>Không đọc bộ nhớ</h3>
-            <p>
-              Không scan RAM, không đọc dữ liệu nội bộ nhạy cảm, không truy cập vùng nhớ.
-              Tránh hoàn toàn các hành vi có thể bị coi là cheat/hack.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="icon">✅</div>
-            <h3>Chỉ dùng Live Client API</h3>
-            <p>
-              Tool chỉ sử dụng <b>Live Client Data API</b> (cơ chế được cộng đồng sử dụng rộng rãi),
-              cách hoạt động tương tự các công cụ như <b>Blitz / Porofessor / Mobalytics</b>:
-              đọc dữ liệu hiển thị thời gian và hỗ trợ call/combat hợp lệ.
-            </p>
-          </div>
-        </div>
-
-        <div class="note">
-          ⚠️ Lưu ý: Tool hỗ trợ tối ưu thao tác & thông tin. Không phải cheat/hack.
-          Thắng thua vẫn phụ thuộc kỹ năng người chơi 😄
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="section">
-      <div class="wrap">
-        <div class="section-title">
-          <h2>💰 Giá thuê / mua</h2>
-          <p>Thuê linh hoạt theo buổi chơi – hoặc mua vĩnh viễn cho 1 máy.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="plan">
-            <div class="name">
-              <span>Thuê theo giờ</span>
-              <span class="tag">Flex</span>
-            </div>
-            <div class="price">1.000₫ <span>/ giờ</span></div>
-            <ul class="list">
-              <li>Phù hợp chơi theo buổi</li>
-              <li>Test nhanh trước khi mua</li>
-              <li>Không ràng buộc dài hạn</li>
-            </ul>
-          </div>
-
-          <div class="plan featured">
-            <div class="name">
-              <span>Thuê theo ngày</span>
-              <span class="tag">Best value</span>
-            </div>
-            <div class="price">10.000₫ <span>/ 24 giờ</span></div>
-            <ul class="list">
-              <li>Chơi thoải mái cả ngày</li>
-              <li>Tối ưu cho leo rank</li>
-              <li>Gia hạn nhanh, dùng liền</li>
-            </ul>
-          </div>
-
-          <div class="plan lifetime">
-            <div class="name">
-              <span>Gói vĩnh viễn</span>
-              <span class="tag">Lifetime</span>
-            </div>
-            <div class="price">999.000₫ <span>/ trọn đời</span></div>
-            <ul class="list">
-              <li>Không giới hạn thời gian</li>
-              <li>Phù hợp người chơi lâu dài</li>
-              <li>Một lần là xong</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="cta-wide">
+        <div class="release-box">
           <div>
-            <h3>📩 Thuê / mua trong 1 phút</h3>
-            <p>Nhắn Telegram để được hướng dẫn nhanh và kích hoạt dùng ngay.</p>
+            <strong>LOL_Coach_Control_v2.7_Native.exe</strong>
+            <span>Windows 10/11 · 64-bit · Native desktop utility</span>
           </div>
-          <a class="btn primary" id="btnTelegramPricing" href="https://t.me/th4nhlm" target="_blank" rel="noopener">Liên hệ Telegram</a>
+          <a class="button button-primary" href="https://github.com/mactimflash/tocbien/releases" target="_blank" rel="noopener noreferrer">Mở trang tải về</a>
+        </div>
+
+        <p class="notice"><strong>Lưu ý:</strong> Đây là release candidate chưa ký số. Windows SmartScreen có thể hiển thị cảnh báo. Chỉ tải file từ trang GitHub Releases được liên kết tại website này.</p>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">TÍNH NĂNG</p>
+          <h2>Chỉ giữ những gì cần thiết trong trận</h2>
+          <p>Thiết kế hướng sự kiện, ưu tiên phản hồi nhanh và không duy trì giao diện lớn ở nền.</p>
+        </div>
+
+        <div class="feature-list">
+          <article class="feature-item">
+            <span class="feature-number">01</span>
+            <div><h3>Học và phát lại điểm ping</h3><p>Ghi các vị trí click do chính người dùng chọn. Điểm học chỉ tồn tại trong RAM và có thể xóa ngay bằng Shift+C.</p></div>
+          </article>
+          <article class="feature-item">
+            <span class="feature-number">02</span>
+            <div><h3>Theo dõi Tốc Biến</h3><p>Đánh dấu TOP, JG, MID, AD và SP bằng Alt+F5 đến Alt+F9. Mỗi lượt dùng mặc định được tính hồi sau 05:00.</p></div>
+          </article>
+          <article class="feature-item">
+            <span class="feature-number">03</span>
+            <div><h3>Trạng thái League Client</h3><p>Hiển thị Chưa kết nối hoặc Đã kết nối dựa trên League Client cục bộ; gameTime được cập nhật khi Live Client khả dụng.</p></div>
+          </article>
+          <article class="feature-item">
+            <span class="feature-number">04</span>
+            <div><h3>Auto Accept thử nghiệm</h3><p>Tùy chọn này được bật mặc định trong Mở rộng → Tùy chọn và có thể tắt bất cứ lúc nào. Nếu tự động chấp nhận thất bại, người dùng vẫn cần xác nhận thủ công.</p></div>
+          </article>
+          <article class="feature-item">
+            <span class="feature-number">05</span>
+            <div><h3>Chạy ở khay hệ thống</h3><p>Đóng cửa sổ để tiếp tục chạy nền. Nhấp biểu tượng khay để mở lại; chọn Kết thúc hoặc Ctrl+Q để thoát hoàn toàn.</p></div>
+          </article>
+          <article class="feature-item">
+            <span class="feature-number">06</span>
+            <div><h3>Native Windows, không runtime Python</h3><p>Ứng dụng Win32 x64 sử dụng message loop chuẩn, một instance và cleanup hook, hotkey, timer cùng tray icon khi thoát.</p></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- DONATE -->
-    <section id="donate" class="section section-dark">
-      <div class="wrap donate-grid">
+    <section class="section" id="guide">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="section-kicker">DÙNG NHANH</p>
+          <h2>Học điểm ping trong bốn bước</h2>
+        </div>
+
+        <ol class="steps">
+          <li><span>1</span><div><strong>Mở ứng dụng trước hoặc trong trận</strong><p>Khi League Client sẵn sàng, trạng thái chuyển từ Chưa kết nối sang Đã kết nối.</p></div></li>
+          <li><span>2</span><div><strong>Nhấn Shift+S để bắt đầu học</strong><p>Mở bảng điểm bằng Tab, sau đó click lần lượt các vị trí bạn muốn phần mềm ghi nhớ.</p></div></li>
+          <li><span>3</span><div><strong>Nhấn Shift+S lần nữa để kết thúc</strong><p>Danh sách tọa độ được giữ trong RAM cho tới khi xóa hoặc thoát ứng dụng.</p></div></li>
+          <li><span>4</span><div><strong>Phát lại đúng một lượt</strong><p>Giữ Tab hoặc Space ít nhất 0,50 giây, rồi nhấn phím còn lại trong cửa sổ 0,50 giây.</p></div></li>
+        </ol>
+
+        <div class="tip"><strong>Nếu học sai:</strong> nhấn Shift+C để xóa toàn bộ điểm rồi thực hiện lại. Di chuyển chuột vào góc trên-trái để kích hoạt failsafe trước click kế tiếp.</div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="hotkeys">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="section-kicker">PHÍM TẮT CỐ ĐỊNH</p>
+          <h2>Không cần cấu hình trước khi dùng</h2>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Phím</th><th>Tác vụ</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Shift + S</kbd></td><td>Bật hoặc dừng học vị trí</td></tr>
+              <tr><td><kbd>Shift + C</kbd></td><td>Xóa toàn bộ vị trí đã học</td></tr>
+              <tr><td><kbd>Tab / Space</kbd></td><td>ARM và phát lại theo combo 0,50 giây</td></tr>
+              <tr><td><kbd>Alt + F5…F9</kbd></td><td>Ghi Flash TOP / JG / MID / AD / SP</td></tr>
+              <tr><td><kbd>F5</kbd></td><td>Gợi ý giao tranh</td></tr>
+              <tr><td><kbd>F6</kbd></td><td>Tóm tắt trạng thái Flash</td></tr>
+              <tr><td><kbd>Ctrl + Q</kbd></td><td>Kết thúc ứng dụng</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="technical-scope">
+      <div class="container narrow two-columns">
         <div>
-          <div class="section-title left">
-            <h2>❤️ Donate ủng hộ tác giả</h2>
-            <p>Nếu bạn thấy tool hữu ích, có thể donate để ủng hộ chi phí duy trì & phát triển thêm tính năng.</p>
+          <div class="section-heading left">
+            <p class="section-kicker">PHẠM VI KỸ THUẬT</p>
+            <h2>Hoạt động cục bộ, không can thiệp tiến trình game</h2>
           </div>
-          <div class="donate-note">
-            <p class="mini">Cảm ơn bạn đã quan tâm đến công cụ này, chúc bạn chơi game vui vẻ!</p>
+          <ul class="check-list">
+            <li>Không process injection hoặc DLL injection.</li>
+            <li>Không đọc bộ nhớ League of Legends.</li>
+            <li>Không chặn packet hoặc bypass anti-cheat.</li>
+            <li>Không tài khoản, quảng cáo hay telemetry trong ứng dụng.</li>
+            <li>Mouse hook chỉ bật tạm thời khi học vị trí.</li>
+          </ul>
+        </div>
+
+        <aside class="policy-box">
+          <strong>Trạng thái phát hành</strong>
+          <p>Flash tracking, replay input và Auto Accept vẫn cần kiểm thử thực tế cùng đánh giá chính sách Riot trước khi phát hành công khai rộng rãi.</p>
+          <p>LOL Macro Helper Tool là dự án độc lập, không được Riot Games tài trợ, chứng thực hoặc vận hành. Các nhãn hiệu liên quan thuộc chủ sở hữu tương ứng.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="about">
+      <div class="container narrow">
+        <div class="section-heading">
+          <p class="section-kicker">GIỚI THIỆU</p>
+          <h2>LOL Macro Helper Tool</h2>
+        </div>
+        <p>LOL Macro Helper Tool là chương trình hỗ trợ lưu thông tin trạng thái Tốc Biến miễn phí cho Windows.</p>
+        <p>Liên lạc: <a class="text-link" href="mailto:safevuln@gmail.com">th4nhlm: safevuln@gmail.com</a></p>
+        <p>Xin cám ơn sự quan tâm và chia sẻ của mọi người.</p>
+      </div>
+    </section>
+
+    <section class="section donate-section" id="donate">
+      <div class="container donate-grid">
+        <div>
+          <div class="section-heading left">
+            <p class="section-kicker">ỦNG HỘ TỰ NGUYỆN</p>
+            <h2>MoMo Donate</h2>
+            <p>Phần mềm được cung cấp miễn phí. Nếu công cụ hữu ích với bạn, khoản ủng hộ tự nguyện sẽ giúp duy trì việc thử nghiệm, sửa lỗi và cải tiến phiên bản tiếp theo.</p>
           </div>
+          <p class="small-text">Donate không mở khóa tính năng và không phải phí thuê phần mềm.</p>
         </div>
 
         <div class="donate-card">
-          <img src="donate_qr.png" alt="Donate QR Code" class="qr" />
-          <div class="mini center">Quét QR để donate (tuỳ tâm)</div>
+          <img src="donate_qr.png" alt="Mã QR MoMo Donate" class="donate-qr">
+          <p>Quét QR để donate tùy tâm</p>
         </div>
       </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="wrap footer-inner">
-        <div class="mini">© <span id="year"></span> LOL Macro Helper Tool. All rights reserved.</div>
-        <div class="mini">
-          <a href="#top">Lên đầu trang</a>
-          <span class="sep">•</span>
-          <a id="footerTelegram" href="https://t.me/th4nhlm" target="_blank" rel="noopener">Telegram</a>
-        </div>
-      </div>
-    </footer>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> LOL Macro Helper Tool</p>
+      <div>
+        <a href="https://lmht.pages.dev">lmht.pages.dev</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/mactimflash/tocbien" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span aria-hidden="true">·</span>
+        <a href="#top">Lên đầu trang</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
