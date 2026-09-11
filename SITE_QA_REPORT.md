@@ -44,6 +44,5 @@ Chrome/Edge và kiểm tra thủ công ở 360 px, 768 px, 1366 px và 1920 px.
 
 ## Release blocker
 
-GitHub Release công khai hiện vẫn là bản `tocbien.exe` cũ. Chủ repo phải upload
-candidate `LOL_Coach_Control_v2.7_Native.exe`, installer và SHA-256 trước khi
-website v2.7 được public. Xem `PUBLISH_CHECKLIST.md`.
+GitHub Release công khai hiện vẫn là `LOL_Coach_Control_v2.7_Native.exe`, installer và SHA-256 trước khi
+website v2.7 được public.
