@@ -9,7 +9,7 @@
 Phiên bản **v2.7.8 Native** tập trung vào trải nghiệm gọn, nhẹ và dễ dùng: mở phần mềm, thiết lập một lần, sau đó sử dụng bằng các phím tắt quen thuộc trong trận.
 
 ---
-
+## Video giới thiệu phần mềm: _https://www.youtube.com/watch?v=i5utmZDD2n0_
 ## ⬇️ Tải phần mềm
 
 ### [👉 Tải LOL Macro Helper Tool v2.7.8 Native](../../releases/latest)
